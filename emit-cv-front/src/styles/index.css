@@ -18,3 +18,23 @@
     @apply bg-night text-white;
   }
 }
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  body * {
+    visibility: hidden;
+  }
+  #cv-print,
+  #cv-print * {
+    visibility: visible;
+  }
+  #cv-print {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
