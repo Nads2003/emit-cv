@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { Mail, Lock, Eye, EyeOff, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { ROUTES } from "@/constants/routes";
 import { getHomeRoute } from "@/utils/redirect";
@@ -10,6 +10,7 @@ const inputClass =
   "w-full rounded-xl border border-slate-300 bg-transparent py-3 pl-11 pr-4 text-sm outline-none transition placeholder:text-slate-400 focus:border-brand dark:border-night-line dark:placeholder:text-slate-500";
 
 export default function Login() {
+  const location = useLocation();
   const { t } = useLanguage();
   const { user, login } = useAuth();
   const [form, setForm] = useState({ email: "", password: "" });
@@ -18,7 +19,8 @@ export default function Login() {
   const [error, setError] = useState("");
 
   // Déjà connecté (ou connexion réussie) → redirection selon le rôle
-  if (user) return <Navigate to={getHomeRoute(user)} replace />;
+  const from = location.state?.from?.pathname;
+  if (user) return <Navigate to={from || getHomeRoute(user)} replace />;
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -61,6 +63,15 @@ export default function Login() {
         <p className="mt-2 text-slate-500 dark:text-slate-400">{t("login.subtitle")}</p>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+                    {location.state?.registered && (
+            <div
+              role="status"
+              className="flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-500"
+            >
+              <CheckCircle2 size={18} className="shrink-0" />
+              {t("login.registered")}
+            </div>
+          )}
           {error && (
             <div
               role="alert"
