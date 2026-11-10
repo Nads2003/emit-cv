@@ -20,9 +20,15 @@ export function AuthProvider({ children }) {
     setUser(null);
   }, []);
 
+  // Met à jour l'utilisateur connecté (ex. après modification du profil)
+  const updateUser = useCallback((next) => {
+    tokenStorage.setUser(next);
+    setUser(next);
+  }, []);
+
   const value = useMemo(
-    () => ({ user, isAuthenticated: !!user, login, logout }),
-    [user, login, logout],
+    () => ({ user, isAuthenticated: !!user, login, logout, updateUser }),
+    [user, login, logout, updateUser],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -21,6 +21,7 @@ import RechercheProfils from "@/pages/admin/RechercheProfils";
 import { ROUTES } from "@/constants/routes";
 import { ROLES } from "@/constants/roles";
 import Historique from "@/pages/admin/Historique";
+import Profil from "@/pages/shared/Profil";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -43,6 +44,7 @@ export default function AppRoutes() {
         <Route element={<ProtectedRoute roles={[ROLES.ETUDIANT]} />}>
           <Route path={ROUTES.ETUDIANT_DASHBOARD} element={<EtudiantDashboard />} />
           <Route path={ROUTES.ENTRETIEN_IA} element={<Entretien />} />
+          <Route path={ROUTES.ETUDIANT_PROFIL} element={<Profil />} />
         </Route>
       </Route>
 
@@ -50,6 +52,7 @@ export default function AppRoutes() {
       <Route element={<ProtectedRoute roles={[ROLES.ADMIN]} />}>
         <Route element={<AdminLayout />}>
           <Route path={ROUTES.ADMIN_HISTORIQUE} element={<Historique />} />
+          <Route path={ROUTES.ADMIN_PROFIL} element={<Profil />} />
           <Route path={ROUTES.ADMIN_DASHBOARD} element={<AdminDashboard />} />
           <Route path={ROUTES.ADMIN_OFFRES} element={<GestionOffres />} />
           <Route path={ROUTES.ADMIN_OFFRE_NEW} element={<OffreForm />} />

@@ -8,6 +8,7 @@ export const ROUTES = {
   REGISTER: "/register",
   ETUDIANT_DASHBOARD: "/etudiant",
   ETUDIANT_CV: "/etudiant/cv",
+  ETUDIANT_PROFIL: "/etudiant/profil",
   ADMIN_OFFRES: "/admin/offres",
   ADMIN_DASHBOARD: "/admin",
   ADMIN_OFFRE_NEW: "/admin/offres/nouvelle",
@@ -15,4 +16,5 @@ export const ROUTES = {
   ADMIN_CANDIDATS: "/admin/candidats",
   ADMIN_PROFILS: "/admin/profils",
   ADMIN_HISTORIQUE: "/admin/historique",
+  ADMIN_PROFIL: "/admin/profil",
 };

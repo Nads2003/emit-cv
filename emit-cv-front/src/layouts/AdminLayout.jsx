@@ -1,7 +1,8 @@
-import { LayoutDashboard, Briefcase, UserCheck, Search, History } from "lucide-react";
+import { LayoutDashboard, Briefcase, UserCheck, Search, History, User } from "lucide-react";
 import SidebarLayout from "@/layouts/SidebarLayout";
 import { ROUTES } from "@/constants/routes";
 import { useLanguage } from "@/hooks/useLanguage";
+
 
 export default function AdminLayout() {
   const { t } = useLanguage();
