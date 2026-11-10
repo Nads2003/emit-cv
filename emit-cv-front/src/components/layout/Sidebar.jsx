@@ -1,7 +1,9 @@
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { Home, LogOut, LogIn } from "lucide-react";
 import Logo from "@/components/common/Logo";
+import Avatar from "@/components/common/Avatar";
 import { ROUTES } from "@/constants/routes";
+import { getProfileRoute } from "@/utils/redirect";
 import { useAuth } from "@/hooks/useAuth";
 import { useLanguage } from "@/hooks/useLanguage";
 
@@ -11,6 +13,8 @@ const itemClass = ({ isActive }) =>
       ? "bg-brand/15 text-brand"
       : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-night-line/60"
   }`;
+
+const cardClass = "mt-8 flex items-center gap-3 rounded-2xl bg-slate-100 p-3 dark:bg-night-line/50";
 
 export default function Sidebar({ links, onNavigate }) {
   const { t } = useLanguage();
@@ -23,20 +27,32 @@ export default function Sidebar({ links, onNavigate }) {
     navigate(ROUTES.HOME);
   };
 
+  const userInfo = (
+    <>
+      <Avatar user={user} size={44} />
+      <div className="min-w-0">
+        <p className="truncate text-sm font-semibold">{user?.nom ?? t("side.demo")}</p>
+        <p className="truncate text-xs text-slate-500 dark:text-slate-400">{user?.email ?? t("side.student")}</p>
+      </div>
+    </>
+  );
+
   return (
     <div className="flex h-full flex-col p-5">
       <Logo />
 
-      {/* Utilisateur */}
-      <div className="mt-8 flex items-center gap-3 rounded-2xl bg-slate-100 p-3 dark:bg-night-line/50">
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand text-lg font-bold text-white">
-          {(user?.nom ?? "D").charAt(0).toUpperCase()}
-        </span>
-        <div className="min-w-0">
-          <p className="truncate text-sm font-semibold">{user?.nom ?? t("side.demo")}</p>
-          <p className="truncate text-xs text-slate-500 dark:text-slate-400">{user?.email ?? t("side.student")}</p>
-        </div>
-      </div>
+      {/* Utilisateur (cliquable vers le profil) */}
+      {user ? (
+        <Link
+          to={getProfileRoute(user)}
+          onClick={onNavigate}
+          className={`${cardClass} transition hover:ring-2 hover:ring-brand/40`}
+        >
+          {userInfo}
+        </Link>
+      ) : (
+        <div className={cardClass}>{userInfo}</div>
+      )}
 
       {/* Navigation */}
       <nav className="mt-6 flex flex-col gap-1.5">

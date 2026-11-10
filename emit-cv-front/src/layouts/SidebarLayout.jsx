@@ -4,6 +4,7 @@ import { Menu, X, Sun, Moon } from "lucide-react";
 import Sidebar from "@/components/layout/Sidebar";
 import { useTheme } from "@/hooks/useTheme";
 import { useLanguage } from "@/hooks/useLanguage";
+import NotificationBell from "@/components/layout/NotificationBell";
 
 const roundBtn =
   "flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 text-slate-700 transition hover:border-brand hover:text-brand dark:border-night-line dark:text-white";
@@ -37,6 +38,7 @@ export default function SidebarLayout({ links }) {
           </button>
 
           <div className="flex items-center gap-3">
+            <NotificationBell btnClass={roundBtn} />
             <button onClick={toggleTheme} className={roundBtn} aria-label={t("nav.toggleTheme")}>
               {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
             </button>

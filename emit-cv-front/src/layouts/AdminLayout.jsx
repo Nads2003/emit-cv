@@ -1,7 +1,8 @@
-import { LayoutDashboard, Briefcase, UserCheck, Search } from "lucide-react";
+import { LayoutDashboard, Briefcase, UserCheck, Search, History, User } from "lucide-react";
 import SidebarLayout from "@/layouts/SidebarLayout";
 import { ROUTES } from "@/constants/routes";
 import { useLanguage } from "@/hooks/useLanguage";
+
 
 export default function AdminLayout() {
   const { t } = useLanguage();
@@ -11,6 +12,7 @@ export default function AdminLayout() {
     { to: ROUTES.ADMIN_OFFRES, icon: Briefcase, label: t("side.offers") },
     { to: ROUTES.ADMIN_CANDIDATS, icon: UserCheck, label: t("side.candidates") },
     { to: ROUTES.ADMIN_PROFILS, icon: Search, label: t("side.profiles") },
+    { to: ROUTES.ADMIN_HISTORIQUE, icon: History, label: t("side.history") },
   ];
 
   return <SidebarLayout links={links} />;
