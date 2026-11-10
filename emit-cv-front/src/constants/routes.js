@@ -9,9 +9,10 @@ export const ROUTES = {
   ETUDIANT_DASHBOARD: "/etudiant",
   ETUDIANT_CV: "/etudiant/cv",
   ADMIN_OFFRES: "/admin/offres",
-   ADMIN_DASHBOARD: "/admin",
+  ADMIN_DASHBOARD: "/admin",
   ADMIN_OFFRE_NEW: "/admin/offres/nouvelle",
   ADMIN_OFFRE_EDIT: "/admin/offres/:id/modifier",
   ADMIN_CANDIDATS: "/admin/candidats",
   ADMIN_PROFILS: "/admin/profils",
+  ADMIN_HISTORIQUE: "/admin/historique",
 };

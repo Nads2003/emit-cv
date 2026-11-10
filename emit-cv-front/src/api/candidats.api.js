@@ -2,6 +2,8 @@ import api from "./axiosInstance";
 import { candidatsMock } from "@/data/candidats.mock";
 import { offresStore } from "@/data/offresStore";
 import { calculerScore } from "@/utils/scoring";
+import { notifStore } from "@/data/notifStore";
+import { historiqueStore } from "@/data/historiqueStore";
 
 const MOCK = import.meta.env.VITE_AUTH_MOCK !== "false";
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -58,6 +60,7 @@ export const getClassement = async (offreId) => {
 };
 
 /** POST /api/offres/{id}/candidats/{candidatId}/decision/  { decision } */
+/** POST /api/offres/{id}/candidats/{candidatId}/decision/  { decision } */
 export const setDecision = async (offreId, candidatId, decision) => {
   if (MOCK) {
     await wait(250);
@@ -66,6 +69,15 @@ export const setDecision = async (offreId, candidatId, decision) => {
     if (decision === "attente") delete all[key];
     else all[key] = decision;
     writeDecisions(all);
+
+    const offre = offresStore.get(offreId);
+    const candidat = candidatsMock.find((c) => c.id === Number(candidatId));
+    const params = { nom: candidat?.cv.profil.nom ?? "", titre: offre?.titre ?? "" };
+    historiqueStore.log(
+      decision === "selectionne" ? "histo.selected" : decision === "refuse" ? "histo.rejected" : "histo.reset",
+      params,
+    );
+    if (decision === "selectionne") notifStore.push("etudiant", "notif.selected", { titre: params.titre });
     return { ok: true };
   }
   const { data } = await api.post(`/offres/${offreId}/candidats/${candidatId}/decision/`, { decision });

@@ -28,10 +28,15 @@ export function LanguageProvider({ children }) {
     [],
   );
 
-  // t("hero.title1") → texte dans la langue courante
+ 
+    // t("hero.title1")  ou  t("notif.newOffer", { titre: "Stage React" })
   const t = useCallback(
-    (key) =>
-      key.split(".").reduce((obj, k) => (obj ? obj[k] : undefined), translations[lang]) ?? key,
+    (key, params) => {
+      const text = key.split(".").reduce((obj, k) => (obj ? obj[k] : undefined), translations[lang]) ?? key;
+      return params && typeof text === "string"
+        ? text.replace(/\{(\w+)\}/g, (_, name) => params[name] ?? "")
+        : text;
+    },
     [lang],
   );
 

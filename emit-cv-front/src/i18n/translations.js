@@ -246,6 +246,7 @@ export const translations = {
       student: "Étudiant",
       candidates: "Candidats recommandés",
       profiles: "Recherche de profils",
+      history:"Historiques"
     },
     dash: {
       hello: "Bonjour",
@@ -437,6 +438,34 @@ export const translations = {
         error: "Impossible de charger les profils.",
         view: "Voir le profil",
       },
+        history: {
+        title: "Historique des actions",
+        subtitle: "Journal de vos actions sur les offres et les candidats.",
+        empty: "Aucune action enregistrée pour le moment.",
+        error: "Impossible de charger l'historique.",
+      },
+    },
+        bell: {
+      title: "Notifications",
+      markAll: "Tout marquer comme lu",
+      empty: "Aucune notification pour le moment.",
+    },
+    notif: {
+      welcomeStudent: "Bienvenue sur EMIT-CV-IA ! Complétez votre CV pour recevoir des recommandations.",
+      welcomeAdmin: "Bienvenue ! Publiez une offre pour que l'IA vous recommande des candidats.",
+      newOffer: "Nouvelle offre disponible : {titre}",
+      selected: "Bonne nouvelle ! Votre profil a été sélectionné pour « {titre} ».",
+      newApplication: "Nouvelle candidature reçue pour « {titre} ».",
+    },
+    histo: {
+      offerCreated: "Offre créée : {titre}",
+      offerUpdated: "Offre modifiée : {titre}",
+      offerClosed: "Offre clôturée : {titre}",
+      offerRepublished: "Offre republiée : {titre}",
+      offerDeleted: "Offre supprimée : {titre}",
+      selected: "Candidat sélectionné : {nom} pour « {titre} »",
+      rejected: "Candidat refusé : {nom} pour « {titre} »",
+      reset: "Décision annulée : {nom} pour « {titre} »",
     },
     offers: {
       title1: "Nos",
@@ -739,6 +768,7 @@ export const translations = {
       student: "Student",
       candidates: "Recommended candidates",
       profiles: "Profile search",
+      history:"Historiques"
     },
     dash: {
       hello: "Hello",
@@ -930,6 +960,34 @@ export const translations = {
         error: "Unable to load profiles.",
         view: "View profile",
       },
+      history: {
+        title: "Action history",
+        subtitle: "Log of your actions on offers and candidates.",
+        empty: "No action recorded yet.",
+        error: "Unable to load the history.",
+      },
+    },
+        bell: {
+      title: "Notifications",
+      markAll: "Mark all as read",
+      empty: "No notification yet.",
+    },
+    notif: {
+      welcomeStudent: "Welcome to EMIT-CV-IA! Complete your CV to receive recommendations.",
+      welcomeAdmin: "Welcome! Publish an offer so the AI can recommend candidates.",
+      newOffer: "New offer available: {titre}",
+      selected: "Good news! Your profile has been selected for \"{titre}\".",
+      newApplication: "New application received for \"{titre}\".",
+    },
+    histo: {
+      offerCreated: "Offer created: {titre}",
+      offerUpdated: "Offer updated: {titre}",
+      offerClosed: "Offer closed: {titre}",
+      offerRepublished: "Offer republished: {titre}",
+      offerDeleted: "Offer deleted: {titre}",
+      selected: "Candidate selected: {nom} for \"{titre}\"",
+      rejected: "Candidate rejected: {nom} for \"{titre}\"",
+      reset: "Decision cancelled: {nom} for \"{titre}\"",
     },
       offers: {
       title1: "Our",

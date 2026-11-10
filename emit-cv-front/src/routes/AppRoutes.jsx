@@ -20,7 +20,7 @@ import CandidatsRecommandes from "@/pages/admin/CandidatsRecommandes";
 import RechercheProfils from "@/pages/admin/RechercheProfils";
 import { ROUTES } from "@/constants/routes";
 import { ROLES } from "@/constants/roles";
-
+import Historique from "@/pages/admin/Historique";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -49,6 +49,7 @@ export default function AppRoutes() {
       {/* Espace administrateur */}
       <Route element={<ProtectedRoute roles={[ROLES.ADMIN]} />}>
         <Route element={<AdminLayout />}>
+          <Route path={ROUTES.ADMIN_HISTORIQUE} element={<Historique />} />
           <Route path={ROUTES.ADMIN_DASHBOARD} element={<AdminDashboard />} />
           <Route path={ROUTES.ADMIN_OFFRES} element={<GestionOffres />} />
           <Route path={ROUTES.ADMIN_OFFRE_NEW} element={<OffreForm />} />

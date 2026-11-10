@@ -7,6 +7,7 @@ import { getHomeRoute } from "@/utils/redirect";
 import { useTheme } from "@/hooks/useTheme";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useAuth } from "@/hooks/useAuth";
+import NotificationBell from "@/components/layout/NotificationBell";
 
 const links = [
   { to: ROUTES.HOME, key: "nav.home", end: true },
@@ -58,6 +59,7 @@ export default function Navbar() {
 
           {user ? (
             <>
+            <NotificationBell btnClass={roundBtn} />
               <Link
                 to={getHomeRoute(user)}
                 className="hidden rounded-full bg-brand px-5 py-2.5 text-[15px] font-semibold text-white transition hover:brightness-110 sm:inline"
