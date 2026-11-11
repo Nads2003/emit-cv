@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Briefcase, ClipboardList, Users, UserCheck, Plus, ArrowRight, AlertCircle } from "lucide-react";
-import { statusTone } from "@/components/offres/offreStyles";
+import { statusTone } from "@/components/offers/offreStyles";
 import { ROUTES } from "@/constants/routes";
 import { getAdminOverview } from "@/api/candidats.api";
 import { useAuth } from "@/hooks/useAuth";
@@ -43,7 +43,7 @@ export default function AdminDashboard() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-3xl font-semibold">
-            {t("admin.dashboard.hello")}, <span className="text-brand">{user?.nom}</span> 👋
+            {t("admin.dashboard.hello")}, <span className="text-brand">{user?.nom}</span>
           </h1>
           <p className="mt-2 text-slate-500 dark:text-slate-400">{t("admin.dashboard.subtitle")}</p>
         </div>

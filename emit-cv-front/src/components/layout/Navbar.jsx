@@ -16,12 +16,12 @@ const links = [
 ];
 
 const linkClass = ({ isActive }) =>
-  `text-[17px] transition-colors hover:text-brand ${
+  `text-[16px] transition-colors hover:text-brand ${
     isActive ? "text-brand" : "text-slate-600 dark:text-slate-200"
   }`;
 
 const roundBtn =
-  "flex h-12 w-12 items-center justify-center rounded-full border border-slate-300 text-slate-700 transition hover:border-brand hover:text-brand dark:border-night-line dark:text-white";
+  "flex h-12 w-12  items-center justify-center rounded-full border border-slate-400 text-slate-700 transition hover:border-brand hover:text-brand dark:border-night-line dark:text-white";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -46,7 +46,7 @@ export default function Navbar() {
         {/* Actions */}
         <div className="flex items-center gap-3">
           <button onClick={toggleTheme} className={roundBtn} aria-label={t("nav.toggleTheme")}>
-            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </button>
 
           <button

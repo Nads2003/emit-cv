@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { History, Plus, Pencil, Lock, RotateCcw, Trash2, Check, X, AlertCircle } from "lucide-react";
-import { getHistorique } from "@/api/historique.api";
+import { getHistorique } from "@/api/history.api";
 import { useLanguage } from "@/hooks/useLanguage";
 
 const META = {

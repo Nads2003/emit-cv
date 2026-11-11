@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FileText, Globe, Briefcase, Trophy, Check, ArrowRight, AlertCircle, Inbox } from "lucide-react";
 import ScoreBadge from "@/components/common/ScoreBadge";
-import OffreModal from "@/components/offres/OffreModal";
-import { typeTone } from "@/components/offres/offreStyles";
+import OffreModal from "@/components/offers/OffreModal";
+import { typeTone } from "@/components/offers/offreStyles";
 import { ROUTES } from "@/constants/routes";
 import { getRecommandations } from "@/api/recommandations.api";
 import { useAuth } from "@/hooks/useAuth";
@@ -49,7 +49,7 @@ export default function Dashboard() {
     <section className="mx-auto max-w-[1200px] px-5 py-10 lg:px-12">
       {/* Bienvenue */}
       <h1 className="text-3xl font-semibold">
-        {t("dash.hello")}, <span className="text-brand">{user?.nom}</span> 👋
+        {t("dash.hello")}, <span className="text-brand">{user?.nom}</span> 
       </h1>
       <p className="mt-2 text-slate-500 dark:text-slate-400">{t("dash.subtitle")}</p>
 

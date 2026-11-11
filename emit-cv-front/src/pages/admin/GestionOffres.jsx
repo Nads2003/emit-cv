@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Plus, Search, Pencil, Users, Lock, RotateCcw, Trash2, CheckCircle2, AlertCircle, CalendarDays } from "lucide-react";
-import { typeTone, statusTone } from "@/components/offres/offreStyles";
+import { typeTone, statusTone } from "@/components/offers/offreStyles";
 import { OFFER_STATUS } from "@/constants/academic";
 import { ROUTES } from "@/constants/routes";
 import { getOffres, changerStatutOffre, supprimerOffre } from "@/api/offres.api";

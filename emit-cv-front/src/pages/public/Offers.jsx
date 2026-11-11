@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { SearchX, AlertCircle } from "lucide-react";
 import SectionTitle from "@/components/common/SectionTitle";
-import OffreCard from "@/components/offres/OffreCard";
-import OffreFilters from "@/components/offres/OffreFilters";
-import OffreModal from "@/components/offres/OffreModal";
+import OffreCard from "@/components/offers/OffreCard";
+import OffreFilters from "@/components/offers/OffreFilters";
+import OffreModal from "@/components/offers/OffreModal";
 import { getOffres } from "@/api/offres.api";
 import { useLanguage } from "@/hooks/useLanguage";
 
