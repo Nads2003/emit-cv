@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Bot, Send, Loader2, Check, Lightbulb, ArrowRight, AlertCircle } from "lucide-react";
-import { evaluerReponse } from "@/api/entretien.api";
+import { evaluerReponse } from "@/api/interview.api";
 import { useLanguage } from "@/hooks/useLanguage";
 
 function AiBubble({ children }) {

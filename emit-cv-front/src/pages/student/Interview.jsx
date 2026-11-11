@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { HeartHandshake } from "lucide-react";
-import SetupForm from "@/components/entretien/SetupForm";
-import InterviewSession from "@/components/entretien/InterviewSession";
-import InterviewResult from "@/components/entretien/InterviewResult";
-import { startEntretien } from "@/api/entretien.api";
+import SetupForm from "@/components/interview/SetupForm";
+import InterviewSession from "@/components/interview/InterviewSession";
+import InterviewResult from "@/components/interview/InterviewResult";
+import { startEntretien } from "@/api/interview.api";
 import { useCv } from "@/hooks/useCv";
 import { useLanguage } from "@/hooks/useLanguage";
 
