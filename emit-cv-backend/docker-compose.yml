@@ -1,0 +1,82 @@
+# Production « une machine » : docker compose up -d --build
+# Pour le HTTPS automatique : docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+x-backend-env: &backend-env
+  ENVIRONMENT: production
+  DATABASE_URL: postgresql+psycopg://emit:${POSTGRES_PASSWORD:?définir POSTGRES_PASSWORD dans .env}@db:5432/emit_cv
+  SECRET_KEY: ${SECRET_KEY:?définir SECRET_KEY dans .env}
+  CORS_ORIGINS: '["${PUBLIC_ORIGIN:-http://localhost:8080}"]'
+  PUBLIC_URL: ${PUBLIC_ORIGIN:-http://localhost:8080}
+  COOKIE_SECURE: ${COOKIE_SECURE:-false}
+  UPLOAD_DIR: /app/uploads
+  TACHES_MODE: worker            # les analyses et classements sont traités par les workers (service « worker »)
+  LOG_JSON: "true"
+  DB_POOL_SIZE: "5"              # 3 workers web × (5+5) + 2 workers de tâches × (5+5) = 50 connexions max (PostgreSQL : 100)
+  DB_MAX_OVERFLOW: "5"
+  EMAIL_BACKEND: ${EMAIL_BACKEND:-smtp}
+  SMTP_HOST: ${SMTP_HOST:-}
+  SMTP_PORT: ${SMTP_PORT:-587}
+  SMTP_USER: ${SMTP_USER:-}
+  SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+  EMAIL_FROM: ${EMAIL_FROM:-EMIT CV <no-reply@emit.example>}
+
+x-journaux: &journaux
+  driver: json-file
+  options: {max-size: "10m", max-file: "5"}   # rotation : les journaux ne saturent jamais le disque
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: emit
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: emit_cv
+    command: ["postgres", "-c", "max_connections=100", "-c", "shared_buffers=256MB", "-c", "log_min_duration_statement=1000"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U emit -d emit_cv"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+    logging: *journaux
+
+  backend:
+    build: ./backend
+    environment:
+      <<: *backend-env
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      WEB_CONCURRENCY: ${WEB_CONCURRENCY:-3}
+    volumes: [uploads:/app/uploads]
+    depends_on:
+      db: {condition: service_healthy}
+    restart: unless-stopped
+    stop_grace_period: 40s
+    logging: *journaux
+
+  worker:   # traite la file de tâches ; plusieurs instances possibles : docker compose up -d --scale worker=3
+    build: ./backend
+    command: ["python", "-m", "app.worker"]
+    environment: *backend-env
+    volumes: [uploads:/app/uploads]
+    depends_on:
+      backend: {condition: service_healthy}   # les migrations sont appliquées par le backend avant le démarrage des workers
+    healthcheck:
+      test: ["CMD-SHELL", "test -n \"$(find /tmp/worker_alive -mmin -2 2>/dev/null)\""]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+    deploy: {replicas: 2}
+    logging: *journaux
+
+  frontend:
+    build: ./frontend
+    ports: ["${HTTP_PORT:-8080}:80"]
+    depends_on: [backend]
+    restart: unless-stopped
+    logging: *journaux
+
+volumes:
+  pgdata:
+  uploads:

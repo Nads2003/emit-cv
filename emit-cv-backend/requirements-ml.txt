@@ -1,0 +1,4 @@
+# OPTIONNEL : embeddings multilingues (modèle transformers).
+# Lourd (PyTorch). Sans ce fichier, le système utilise automatiquement TF-IDF.
+-r requirements.txt
+sentence-transformers>=2.7
