@@ -1,0 +1,162 @@
+{
+  "note": "Résultats RÉELS mesurés dans l'environnement de développement (PostgreSQL 16 local, TF-IDF, données synthétiques). Ils donnent un ordre de grandeur, pas une garantie pour votre serveur.",
+  "machine": {
+    "cpu": 1,
+    "systeme": "Linux-6.18.44-fc-v185-x86_64-with-glibc2.39",
+    "python": "3.12.3"
+  },
+  "cvs": 4000,
+  "generation": {
+    "cvs_generes": 4000,
+    "duree_s": 12.2,
+    "_duree_phase_s": 17.4,
+    "_pic_memoire_processus_mo": 135
+  },
+  "analyse": {
+    "cvs": 4000,
+    "workers": 2,
+    "duree_s": 80.1,
+    "cv_par_seconde": 49.9,
+    "taches": {
+      "termine": 4000
+    },
+    "analyses": {
+      "ok": 4000
+    },
+    "par_worker": [
+      {
+        "worker": 177,
+        "taches": 2000,
+        "ru_maxrss_mo": 200
+      },
+      {
+        "worker": 178,
+        "taches": 2000,
+        "ru_maxrss_mo": 200
+      }
+    ],
+    "_duree_phase_s": 82.2,
+    "_pic_memoire_processus_mo": 98
+  },
+  "classement": {
+    "offres": 3,
+    "duree_totale_s": 20.0,
+    "runs": [
+      {
+        "offre": 1,
+        "statut": "termine",
+        "candidats": 4000,
+        "duree_ms": 5787,
+        "erreur": ""
+      },
+      {
+        "offre": 2,
+        "statut": "termine",
+        "candidats": 4000,
+        "duree_ms": 5580,
+        "erreur": ""
+      },
+      {
+        "offre": 3,
+        "statut": "termine",
+        "candidats": 4000,
+        "duree_ms": 5270,
+        "erreur": ""
+      }
+    ],
+    "recommandations_en_base": 12000,
+    "pic_memoire_worker_mo": 265,
+    "stderr": "",
+    "_duree_phase_s": 21.3,
+    "_pic_memoire_processus_mo": 136
+  },
+  "incremental": {
+    "taches_en_attente_apres_5_modifications": 1,
+    "taches_executees": 4,
+    "duree_s": 18.9,
+    "_duree_phase_s": 19.7,
+    "_pic_memoire_processus_mo": 274
+  },
+  "base": {
+    "taille_base": "64 MB",
+    "plus_grosses_tables": {
+      "recommandation_detail": "34 MB",
+      "cv_analyse": "5440 kB",
+      "recommandation": "2472 kB",
+      "competence": "1968 kB",
+      "tache": "1832 kB"
+    },
+    "connexions_ouvertes": 1,
+    "_duree_phase_s": 0.7,
+    "_pic_memoire_processus_mo": 67
+  },
+  "latences_apres_correction": [
+    {
+      "requete": "classement page 1..40 (20/page)",
+      "n": 40,
+      "p50_ms": 112,
+      "p95_ms": 152,
+      "max_ms": 248,
+      "erreurs": 0
+    },
+    {
+      "requete": "classement + filtres (compétence, score ≥ 60, hors éliminés)",
+      "n": 40,
+      "p50_ms": 101,
+      "p95_ms": 136,
+      "max_ms": 322,
+      "erreurs": 0
+    },
+    {
+      "requete": "recherche de profils (compétence + disponibles)",
+      "n": 40,
+      "p50_ms": 84,
+      "p95_ms": 118,
+      "max_ms": 303,
+      "erreurs": 0
+    },
+    {
+      "requete": "recherche de profils (texte)",
+      "n": 40,
+      "p50_ms": 93,
+      "p95_ms": 124,
+      "max_ms": 147,
+      "erreurs": 0
+    },
+    {
+      "requete": "liste des offres",
+      "n": 40,
+      "p50_ms": 27,
+      "p95_ms": 39,
+      "max_ms": 41,
+      "erreurs": 0
+    },
+    {
+      "requete": "statistiques admin",
+      "n": 20,
+      "p50_ms": 19,
+      "p95_ms": 25,
+      "max_ms": 43,
+      "erreurs": 0
+    },
+    {
+      "requete": "étudiant : mes recommandations",
+      "n": 30,
+      "p50_ms": 29,
+      "p95_ms": 34,
+      "max_ms": 40,
+      "erreurs": 0
+    }
+  ],
+  "defaut_trouve_et_corrige": {
+    "description": "Liste des offres et « mes recommandations » chargeaient toutes les candidatures de chaque offre pour les compter.",
+    "avant_p50_ms": {
+      "liste des offres": 946,
+      "étudiant : mes recommandations": 984
+    },
+    "apres_p50_ms": {
+      "liste des offres": 27,
+      "étudiant : mes recommandations": 29
+    }
+  }
+}
